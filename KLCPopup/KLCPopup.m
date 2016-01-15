@@ -54,7 +54,7 @@ const KLCPopupLayout KLCPopupLayoutCenter = { KLCPopupHorizontalLayoutCenter, KL
   BOOL _isShowing;
   BOOL _isBeingDismissed;
 }
-
+@property UIVisualEffectView *_blurEffectView;
 - (void)updateForInterfaceOrientation;
 - (void)didChangeStatusBarOrientation:(NSNotification*)notification;
 
@@ -137,7 +137,7 @@ const KLCPopupLayout KLCPopupLayoutCenter = { KLCPopupHorizontalLayoutCenter, KL
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
   
   UIView* hitView = [super hitTest:point withEvent:event];
-  if (hitView == self) {
+  if (hitView == self || [NSStringFromClass([hitView class]) isEqualToString:@"_UIVisualEffectContentView"]) {
     
     // Try to dismiss if backgroundTouch flag set.
     if (_shouldDismissOnBackgroundTouch) {
@@ -558,6 +558,7 @@ const KLCPopupLayout KLCPopupLayoutCenter = { KLCPopupHorizontalLayoutCenter, KL
       
       // Setup background view
       _backgroundView.alpha = 0.0;
+        
       if (_maskType == KLCPopupMaskTypeDimmed) {
         _backgroundView.backgroundColor = [UIColor colorWithRed:(0.0/255.0f) green:(0.0/255.0f) blue:(0.0/255.0f) alpha:self.dimmedMaskAlpha];
       }else if(_maskType == KLCPopupMaskTypeLightBlur || _maskType ==  KLCPopupMaskTypeDarkBlur){

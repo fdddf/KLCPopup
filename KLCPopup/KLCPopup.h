@@ -83,8 +83,8 @@ typedef NS_ENUM(NSInteger, KLCPopupMaskType) {
 	KLCPopupMaskTypeNone = 0, // Allow interaction with underlying views.
 	KLCPopupMaskTypeClear, // Don't allow interaction with underlying views.
 	KLCPopupMaskTypeDimmed, // Don't allow interaction with underlying views, dim background.
-  KLCPopupMaskTypeLightBlur, // Don't allow interaction with underlying views, light blur background.
-  KLCPopupMaskTypeDarkBlur, // Don't allow interaction with underlying views, dark blur background.
+    KLCPopupMaskTypeLightBlur, // Don't allow interaction with underlying views, light blur background.
+    KLCPopupMaskTypeDarkBlur, // Don't allow interaction with underlying views, dark blur background.
 };
 
 // KLCPopupLayout structure and maker functions
@@ -122,11 +122,11 @@ extern const KLCPopupLayout KLCPopupLayoutCenter;
 // If YES, then popup will get dismissed when background is touched. default = YES.
 @property (nonatomic, assign) BOOL shouldDismissOnBackgroundTouch;
 
-// If YES, then popup will get dismissed when content view is touched. default = NO.
-@property (nonatomic, assign) BOOL shouldDismissOnContentTouch;
-
 // If YES, then popup will move up or down when keyboard is on or off screen. default = NO.
 @property (nonatomic, assign) BOOL shouldHandleKeyboard;
+
+// If YES, then popup will get dismissed when content view is touched. default = NO.
+@property (nonatomic, assign) BOOL shouldDismissOnContentTouch;
 
 // Block gets called after show animation finishes. Be sure to use weak reference for popup within the block to avoid retain cycle.
 @property (nonatomic, copy) void (^didFinishShowingCompletion)();
